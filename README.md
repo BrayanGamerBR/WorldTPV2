@@ -1,3 +1,45 @@
+# 🌍 WorldTP Plugin
+
+**WorldTP** is a PocketMine-MP plugin that allows players to teleport between loaded worlds on your Minecraft server, compatible with API 5.0.0 and beyond. Ideal for servers with multiple pre-existing worlds, such as survival, creative, or custom mini-game worlds.
+
+## ✨ Main Features
+
+1. **🌍 Teleport Between Loaded Worlds**  
+   Instantly move between different loaded worlds on your server with a simple command. Perfect for servers with multiple game modes and environments.
+
+2. **🗺️ World Loading**  
+   If the world isn't loaded, **WorldTP** will automatically load it before teleporting the player, ensuring a smooth experience.
+
+3. **🚀 Teleport to a Safe Spawn**  
+   The plugin teleports players to the safe spawn point of the destination world, ensuring a seamless and safe transition.
+
+4. **📜 Multilanguage Support**  
+   **WorldTP** supports multiple languages (currently available in English and Spanish), with the option to easily add more language files.
+
+5. **🎨 Colorful and Customizable Messages**  
+   The plugin provides vibrant, stylized messages, designed to enhance the player experience with visually engaging feedback.
+
+6. **🔧 API 5.0.0+ Compatibility**  
+   **WorldTP** is designed to work seamlessly with PocketMine-MP's API 5.0.0 and higher, ensuring long-term stability and support.
+
+## 💡 Customization
+
+- **Multilanguage**: Change the language by modifying the language files in the `/resources/lang` directory.
+- **Stylish Messages**: All plugin messages are colorful and exciting, improving immersion and fun.
+
+---
+
+**Follow my social media for more content and updates:**
+
+- **TikTok**: [@brayanag2000](https://www.tiktok.com/@brayanag2000)
+- **YouTube**: [PinkiBR](https://www.youtube.com/c/PinkiBR)
+
+---
+
+With **WorldTP**, moving between worlds on your server is fast, simple, and fun!
+
+---
+
 # 🌍 Plugin WorldTP
 
 **WorldTP** es un plugin para PocketMine-MP que permite a los jugadores teletransportarse entre mundos cargados en tu servidor de Minecraft, compatible con la API 5.0.0 en adelante. Ideal para servidores con múltiples mundos ya existentes, como mundos de supervivencia, creativos o minijuegos personalizados.
