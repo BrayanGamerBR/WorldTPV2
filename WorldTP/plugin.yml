@@ -1,0 +1,13 @@
+name: WorldTP
+main: WorldTP\Main
+version: 1.0.0
+api: [5.0.0]
+commands:
+  wtp:
+    description: Teletransporta al jugador a otro mundo.
+    usage: /wtp <nombre_del_mundo>
+    permission: worldtp.use
+permissions:
+  worldtp.use:
+    default: true
+
