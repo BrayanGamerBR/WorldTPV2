@@ -5,5 +5,5 @@ branches:
 projects:
   WorldTP:
     path: WorldTP/
-    icon: WorldTP/icon.jpg
+    icon: WorldTP/icon.png
 ...
