@@ -1,8 +1,9 @@
---- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/BrayanGamerBR/WorldTP
+# Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/BrayanGamerBR/WorldTP
 build-by-default: true
 branches:
-- main
+  - main
 projects:
   WorldTP:
     path: WorldTP/
+    icon: icon.png
 ...
