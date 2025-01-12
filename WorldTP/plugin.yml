@@ -1,4 +1,4 @@
-name: WorldTPV2
+name: World_TPV2
 version: 1.0.0
 main: WorldTP\Main
 api: [5.0.0]
