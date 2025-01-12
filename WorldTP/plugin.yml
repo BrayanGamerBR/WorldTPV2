@@ -13,4 +13,5 @@ permissions:
   wtp.command:
     description: Used with /wtp
     default: true
-license: CC BY-NC 4.0
+license: GPL-3.0
+
