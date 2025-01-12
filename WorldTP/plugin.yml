@@ -1,13 +1,16 @@
-name: World_TPV2
-main: WorldTP\Main
+name: WorldTP
 version: 1.0.0
+main: WorldTP\Main
 api: [5.0.0]
+author: brayanag2000
+
 commands:
   wtp:
-    description: Teletransporta al jugador a otro mundo.
-    usage: /wtp <nombre_del_mundo>
-    permission: worldtp.use
+    description: Loads a world and teleports the player to it.
+    usage: "/wtp <world_name>"
+    permission: wtp.command
 permissions:
-  worldtp.use:
+  wtp.command:
+    description: Used with /wtp
     default: true
-
+license: CC BY-NC 4.0
