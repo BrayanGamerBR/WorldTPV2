@@ -1,91 +1,60 @@
 <?php
 
-declare(strict_types=1);
-
 namespace WorldTP;
 
+use pocketmine\plugin\PluginBase;
+use pocketmine\event\Listener;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\plugin\PluginBase;
 use pocketmine\player\Player;
 use pocketmine\world\World;
-use pocketmine\world\Position;
-use pocketmine\world\WorldManager;
+use pocketmine\world\generator\GeneratorManager;
+use pocketmine\utils\TextFormat as TF;
 
-class Main extends PluginBase {
+class Main extends PluginBase implements Listener {
 
-    /** @var array */
-    private array $messages = [];
-
-    public function onEnable() : void {
-        // Establece el idioma predeterminado
-        $this->setLanguage("es");
-
-        // Mensaje de consola al habilitar el plugin
-        $this->getLogger()->info($this->messages["plugin_enabled"]);
+    public function onEnable(): void {
+        $this->getLogger()->info(TF::GREEN . "" );
     }
 
-    public function onDisable() : void {
-        // Mensaje de consola al deshabilitar el plugin
-        $this->getLogger()->info($this->messages["plugin_disabled"]);
+    public function onDisable(): void {
+        $this->getLogger()->info(TF::RED . "");
     }
 
-    public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool {
+    public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
+        if (!$sender instanceof Player) {
+            $sender->sendMessage(TF::RED . "This command can only be used in the game.");
+            return false;
+        }
+
         if ($command->getName() === "wtp") {
-            if ($sender instanceof Player) {
-                if (isset($args[0])) {
-                    $worldName = $args[0];
-                    $worldManager = $this->getServer()->getWorldManager();
-
-                    // Verificar si el mundo ya está generado
-                    if ($worldManager->isWorldGenerated($worldName)) {
-                        // Si el mundo no está cargado, lo cargamos
-                        if (!$worldManager->isWorldLoaded($worldName)) {
-                            $worldManager->loadWorld($worldName);
-                        }
-
-                        // Obtener el mundo al que queremos teletransportar
-                        $world = $worldManager->getWorldByName($worldName);
-
-                        if ($world instanceof World) {
-                            // Establecemos una posición en el mundo de destino
-                            $spawnPosition = $world->getSafeSpawn();
-
-                            // Teletransportar al jugador
-                            $sender->teleport($spawnPosition);
-                            $sender->sendMessage(str_replace("%world%", $worldName, $this->messages["teleport_success"]));
-                        } else {
-                            $sender->sendMessage(str_replace("%world%", $worldName, $this->messages["world_not_found"]));
-                        }
-                    } else {
-                        $sender->sendMessage(str_replace("%world%", $worldName, $this->messages["world_not_generated"]));
-                    }
-                } else {
-                    $sender->sendMessage($this->messages["usage"]);
-                }
-            } else {
-                $sender->sendMessage($this->messages["only_players"]);
+            if (count($args) < 1) {
+                $sender->sendMessage(TF::YELLOW . "Usage: /wtp <world_name>");
+                return false;
             }
+
+            $worldName = $args[0];
+            $worldManager = $this->getServer()->getWorldManager();
+
+           
+            if (!$worldManager->isWorldLoaded($worldName)) {
+                if (!$worldManager->loadWorld($worldName)) {
+                    $sender->sendMessage(TF::RED . "The world '$worldName' does not exist or could not be loaded.");
+                    return false;
+                }
+            }
+
+            $world = $worldManager->getWorldByName($worldName);
+            if ($world instanceof World) {
+                $sender->teleport($world->getSpawnLocation());
+                $sender->sendMessage(TF::GREEN . "Teleported to world '$worldName'!");
+            } else {
+                $sender->sendMessage(TF::RED . "There was an error loading world '$worldName'.");
+            }
+
             return true;
         }
+
         return false;
     }
-
-    /**
-     * Configura el idioma para los mensajes del plugin.
-     *
-     * @param string $lang
-     */
-    public function setLanguage(string $lang) : void {
-        // Ruta hacia la carpeta de recursos de idiomas
-        $resourcePath = $this->getFile() . "resources/lang/{$lang}.php";
-        
-        if (file_exists($resourcePath)) {
-            // Cargar los mensajes del archivo correspondiente
-            $this->messages = include($resourcePath);
-        } else {
-            $this->getLogger()->error("No se pudo cargar el archivo de idioma: " . $resourcePath);
-        }
-    }
 }
-
